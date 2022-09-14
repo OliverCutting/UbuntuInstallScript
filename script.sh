@@ -24,3 +24,8 @@ mv download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjYzMTc4Nzc1 ~/Pictures/mountai
 rm wget-log.1
 gsettings set org.gnome.desktop.background picture-uri-dark file:///home/oliver/Pictures/mountains.jpg
 gsettings set org.gnome.desktop.background picture-options stretched
+
+# Set terminal theme
+wget https://raw.githubusercontent.com/daltonmenezes/aura-theme/main/packages/gnome-terminal/aura-theme.dconf
+dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < ~/aura-theme.dconf
+rm ~/aura-theme.dconf
