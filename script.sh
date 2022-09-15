@@ -28,6 +28,14 @@ rm wget-log.1
 gsettings set org.gnome.desktop.background picture-uri-dark file:///home/oliver/Pictures/mountains.jpg
 gsettings set org.gnome.desktop.background picture-options stretched
 
+# Install theme
+mkdir Projects
+cd Projects
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+cd WhiteSur-gtk-theme
+./install.sh
+cd ~
+
 # Disable auto screen lock
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 
