@@ -1,10 +1,13 @@
 # Fix stupid popping sound
-echo "0" | sudo tee /sys/module/snd_hda_intel/parameters/power_save
-echo "options snd_hda_intel power_save=0" | sudo tee -a /etc/modprobe.d/audio_disable_powersave.conf
+sudo sed -i 's/load-module module-suspend-on-idle/#load-module module-suspend-on-idle/' /etc/pulse/default.pa
+systemctl restart --user pulseaudio
 
 # Install Git
 sudo apt update
 sudo apt install git
+
+# Install Vim
+sudo apt install vim
 
 # Install VSCode
 sudo apt install software-properties-common apt-transport-https wget -y
@@ -25,6 +28,9 @@ rm wget-log.1
 gsettings set org.gnome.desktop.background picture-uri-dark file:///home/oliver/Pictures/mountains.jpg
 gsettings set org.gnome.desktop.background picture-options stretched
 
+# Disable auto screen lock
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
 # Set terminal theme
 wget https://raw.githubusercontent.com/daltonmenezes/aura-theme/main/packages/gnome-terminal/aura-theme.dconf
 dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < ~/aura-theme.dconf
@@ -44,14 +50,14 @@ rm docker-desktop-*-amd64.deb
 # Install Helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-# Install AWSCLI
+# Install awscli
 sudo apt  install awscli
 
-# Install Kubectl
+# Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
 
-# Install EKSctl
+# Install eksctl
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
