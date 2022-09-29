@@ -20,6 +20,9 @@ sudo apt install gnome-tweaks
 # Install Gnome Extensions
 sudo apt install gnome-shell-extensions
 
+# Install Gnome Extension Manager
+sudo apt install gnome-shell-extension-manager
+
 # Install theme
 cd ~/Projects
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
